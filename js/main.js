@@ -1,40 +1,42 @@
+// A couple of global variables
 var start, stop, stopwatchBox;
 
-start = document.getElementById('start');
-stop = document.getElementById('stop');
-stopwatchBox = document.getElementById('stopwatch-box');
+// Grab the necessary elements from the DOM
+start = document.getElementById("start");
+stop = document.getElementById("stop");
+stopwatchBox = document.getElementById("stopwatch-box");
 
-start.addEventListener('click', function() {
-  stopwatch('start');
+// Add event listeners to both buttons
+start.addEventListener("click", function() {
+  stopwatch("start");
 });
 
-stop.addEventListener('click', function() {
-  stopwatch('stop');
+stop.addEventListener("click", function() {
+  stopwatch("stop");
 });
 
-
+// Define a timer ID for the setInterval function
 timerId = null;
 
+// Create the stopwatch
 function stopwatch(command) {
-
   var hours = 0,
     minutes = 0,
     seconds = 0,
     display;
 
-
   function makeTwoDigits(number) {
+    // display double digits for numbers less than 10
     if (number < 10) {
-      return '0' + number;
+      return "0" + number;
     }
 
     return number;
   }
 
-  if (command === 'start') {
-    console.log('Stopwatch on.');
+  if (command === "start") {
+    console.log("Stopwatch on.");
     timerId = setInterval(function() {
-
       seconds++;
       if (seconds === 60) {
         seconds = 0;
@@ -46,18 +48,17 @@ function stopwatch(command) {
         hours++;
       }
 
-      display = makeTwoDigits(hours) + ':' + makeTwoDigits(minutes) + ':' + makeTwoDigits(seconds);
+      display =
+        makeTwoDigits(hours) +
+        ":" +
+        makeTwoDigits(minutes) +
+        ":" +
+        makeTwoDigits(seconds);
       stopwatchBox.innerHTML = display;
       console.log(display);
-
-
-
     }, 1000);
-
-
-  } else if (command === 'stop') {
-    console.log('Stopwatch off.');
+  } else if (command === "stop") {
+    console.log("Stopwatch off.");
     clearInterval(timerId);
   }
-
 }
