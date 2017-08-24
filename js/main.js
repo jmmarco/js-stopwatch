@@ -35,7 +35,6 @@ function stopwatch(command) {
   }
 
   if (command === "start") {
-    console.log("Stopwatch on.");
     timerId = setInterval(function() {
       seconds++;
       if (seconds === 60) {
@@ -58,7 +57,6 @@ function stopwatch(command) {
       console.log(display);
     }, 1000);
   } else if (command === "stop") {
-    console.log("Stopwatch off.");
     clearInterval(timerId);
   }
 }
